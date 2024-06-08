@@ -109,8 +109,8 @@
             let resultadoFinal = resultadoA + resultadoB;
             resultadoFinal = (resultadoFinal % 1 >= 0.5) ? Math.ceil(resultadoFinal) : Math.floor(resultadoFinal);
 
-            valorMenos2 = resultadoFinal - 2;
-            valorMais2 = resultadoFinal + 2;
+            valorMenos2 = (resultadoFinal - 3) + 0.5;
+            valorMais2 = (resultadoFinal + 2) + 0.5;
 
             document.getElementById('result').innerHTML = `Over e Under: ${valorMenos2} e ${valorMais2}`;
         }
@@ -130,13 +130,13 @@
             let countMais2B = 0;
 
             escanteiosA.forEach(valor => {
-                if (valor === valorMenos2) countMenos2A++;
-                if (valor === valorMais2) countMais2A++;
+                if (valor >= valorMenos2) countMenos2A++;
+                if (valor <= valorMais2) countMais2A++;
             });
 
             escanteiosB.forEach(valor => {
-                if (valor === valorMenos2) countMenos2B++;
-                if (valor === valorMais2) countMais2B++;
+                if (valor >= valorMenos2) countMenos2B++;
+                if (valor <= valorMais2) countMais2B++;
             });
 
             const porcentagemMenos2A = (countMenos2A / escanteiosA.length) * 100;
@@ -148,8 +148,8 @@
             const mediaMais2 = (porcentagemMais2A + porcentagemMais2B) / 2;
 
             document.getElementById('resultPercentage').innerHTML = 
-                `Porcentagem média de vezes que ${valorMenos2} apareceu: ${mediaMenos2.toFixed(2)}%<br>` +
-                `Porcentagem média de vezes que ${valorMais2} apareceu: ${mediaMais2.toFixed(2)}%`;
+                `Porcentagem média Over ${valorMenos2} ${mediaMenos2.toFixed(2)}%<br>` +
+                `Porcentagem média Under ${valorMais2} ${mediaMais2.toFixed(2)}%`;
 
             const divisaoMenos2 = 100 / mediaMenos2;
             const divisaoMais2 = 100 / mediaMais2;
